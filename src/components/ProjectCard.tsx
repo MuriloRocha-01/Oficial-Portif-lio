@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Github } from "@/components/BrandIcons";
 import type { Project } from "@/data/site";
 
@@ -10,9 +11,8 @@ const slug = (s: string) =>
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-");
 
-/** Cartão no estilo "janela" do macOS. */
+/** Cartão no estilo "janela" do macOS. O clique abre a página de detalhes do projeto. */
 export default function ProjectCard({ p }: { p: Project }) {
-  const href = p.live ?? p.repo;
   return (
     <article className="group relative flex w-[290px] shrink-0 flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_10px_30px_-12px_rgb(58_31_28/0.25)] transition-transform hover:-translate-y-1 sm:w-[360px]">
       <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
@@ -24,7 +24,7 @@ export default function ProjectCard({ p }: { p: Project }) {
           <span className="ml-auto rounded-full bg-ink px-2 py-0.5 font-mono text-[10px] text-bg">online</span>
         )}
       </div>
-      <a href={href} target="_blank" rel="noreferrer" aria-label={`Abrir ${p.title}`} className="flex flex-1 flex-col">
+      <Link href={`/projetos/${p.slug}`} aria-label={`Ver detalhes de ${p.title}`} className="flex flex-1 flex-col">
         <div
           className="relative aspect-[4/3] overflow-hidden"
           style={{ background: `linear-gradient(135deg, ${p.gradient[0]}, ${p.gradient[1]})` }}
@@ -36,7 +36,7 @@ export default function ProjectCard({ p }: { p: Project }) {
               fill
               unoptimized
               sizes="360px"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              className={`${p.fit === "contain" ? "object-contain" : "object-cover"} transition-transform duration-500 group-hover:scale-105`}
             />
           ) : (
             <span className="absolute inset-0 grid place-items-center font-display text-[9rem] italic leading-none text-white/20 transition-transform duration-500 group-hover:scale-110">
@@ -47,7 +47,7 @@ export default function ProjectCard({ p }: { p: Project }) {
         <div className="flex flex-1 flex-col gap-3 p-5">
           <div className="flex items-start justify-between gap-3">
             <h3 className="text-2xl font-extrabold leading-none tracking-tight">{p.title}</h3>
-            <ArrowUpRight className="shrink-0 text-muted transition-colors group-hover:text-accent" />
+            <ArrowRight className="shrink-0 text-muted transition-all group-hover:translate-x-1 group-hover:text-accent" />
           </div>
           <p className="min-h-10 text-sm leading-relaxed text-muted">{p.description}</p>
           <ul className="mt-auto flex flex-wrap gap-2 pr-8">
@@ -58,7 +58,7 @@ export default function ProjectCard({ p }: { p: Project }) {
             ))}
           </ul>
         </div>
-      </a>
+      </Link>
       <a
         href={p.repo}
         target="_blank"

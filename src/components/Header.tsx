@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
+// "/#..." funciona na home e também nas páginas de projeto
 const links = [
-  { href: "#projetos", label: "projetos" },
-  { href: "#sobre", label: "sobre" },
-  { href: "#habilidades", label: "habilidades" },
-  { href: "#contato", label: "contato" },
+  { href: "/#projetos", label: "projetos" },
+  { href: "/#sobre", label: "sobre" },
+  { href: "/#habilidades", label: "habilidades" },
+  { href: "/#contato", label: "contato" },
 ];
 
 export default function Header() {
@@ -15,12 +17,12 @@ export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-bg/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="#" className="text-sm font-semibold tracking-tight">
+        <Link href="/" className="text-sm font-semibold tracking-tight">
           desenvolvimento web
-        </a>
-        <a href="#" className="absolute left-1/2 hidden -translate-x-1/2 font-mono text-sm md:block">
+        </Link>
+        <Link href="/" className="absolute left-1/2 hidden -translate-x-1/2 font-mono text-sm md:block">
           portfolio
-        </a>
+        </Link>
         <nav aria-label="Principal" className="hidden gap-7 md:flex">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="text-sm font-semibold tracking-tight hover:text-accent">
