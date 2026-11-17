@@ -13,7 +13,7 @@ export default function ProjectsMarquee() {
           <ProjectCard key={p.title} p={p} />
         ))}
         {projects.map((p) => (
-          <div key={`dup-${p.title}`} aria-hidden="true" inert>
+          <div key={`dup-${p.title}`} aria-hidden="true" inert className="flex">
             <ProjectCard p={p} />
           </div>
         ))}

@@ -14,7 +14,7 @@ const slug = (s: string) =>
 export default function ProjectCard({ p }: { p: Project }) {
   const href = p.live ?? p.repo;
   return (
-    <article className="group relative w-[290px] shrink-0 overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_10px_30px_-12px_rgb(58_31_28/0.25)] transition-transform hover:-translate-y-1 sm:w-[360px]">
+    <article className="group relative flex w-[290px] shrink-0 flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_10px_30px_-12px_rgb(58_31_28/0.25)] transition-transform hover:-translate-y-1 sm:w-[360px]">
       <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
         <span className="size-2.5 rounded-full bg-[#ff5f57]" />
         <span className="size-2.5 rounded-full bg-[#febc2e]" />
@@ -24,7 +24,7 @@ export default function ProjectCard({ p }: { p: Project }) {
           <span className="ml-auto rounded-full bg-ink px-2 py-0.5 font-mono text-[10px] text-bg">online</span>
         )}
       </div>
-      <a href={href} target="_blank" rel="noreferrer" aria-label={`Abrir ${p.title}`} className="block">
+      <a href={href} target="_blank" rel="noreferrer" aria-label={`Abrir ${p.title}`} className="flex flex-1 flex-col">
         <div
           className="relative aspect-[4/3] overflow-hidden"
           style={{ background: `linear-gradient(135deg, ${p.gradient[0]}, ${p.gradient[1]})` }}
@@ -44,13 +44,13 @@ export default function ProjectCard({ p }: { p: Project }) {
             </span>
           )}
         </div>
-        <div className="space-y-3 p-5">
+        <div className="flex flex-1 flex-col gap-3 p-5">
           <div className="flex items-start justify-between gap-3">
             <h3 className="text-2xl font-extrabold leading-none tracking-tight">{p.title}</h3>
             <ArrowUpRight className="shrink-0 text-muted transition-colors group-hover:text-accent" />
           </div>
           <p className="min-h-10 text-sm leading-relaxed text-muted">{p.description}</p>
-          <ul className="flex flex-wrap gap-2 pr-8">
+          <ul className="mt-auto flex flex-wrap gap-2 pr-8">
             {p.stack.map((s) => (
               <li key={s} className="rounded-full border border-border px-3 py-0.5 font-mono text-xs">
                 {s}
