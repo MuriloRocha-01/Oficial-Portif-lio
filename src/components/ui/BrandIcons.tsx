@@ -1,3 +1,4 @@
+// Logos do GitHub e do LinkedIn em SVG. O lucide-react não traz mais ícones de marca.
 type P = { size?: number };
 
 export function Github({ size = 18 }: P) {

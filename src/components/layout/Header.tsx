@@ -12,7 +12,9 @@ const links = [
   { href: "/#contato", label: "contato" },
 ];
 
+/** Barra fixa no topo: logo e links das seções. No celular os links ficam num menu que abre e fecha. */
 export default function Header() {
+  // `open` controla só o menu do celular
   const [open, setOpen] = useState(false);
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-bg/80 backdrop-blur">

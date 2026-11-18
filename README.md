@@ -78,22 +78,42 @@ npm run dev        # http://localhost:3000
 ```
 
 Para publicar uma versão de produção: `npm run build` e `npm start`.
-Para adicionar um projeto, edite `src/data/site.ts` e coloque a imagem de capa em `public/projects/`.
+
+## ✏️ Como editar o conteúdo
+
+O texto do site fica em `src/data/`, separado do visual. Não precisa mexer nos componentes para trocar conteúdo.
+
+| Quero mudar… | Edite |
+| --- | --- |
+| Meu nome, textos do "sobre", e-mail e links | `src/data/profile.ts` |
+| Ícones de habilidades | `src/data/skills.ts` |
+| Formação e cursos | `src/data/milestones.ts` |
+| Um projeto existente | `src/data/projects/<nome-do-projeto>.ts` |
+
+**Para adicionar um projeto:** copie um arquivo de `src/data/projects/`, troque os dados, coloque a capa em `public/projects/` e inclua o projeto na lista de `src/data/projects/index.ts` (a ordem da lista é a ordem do carrossel). A página `/projetos/<slug>` é criada sozinha.
 
 ## 🗂 Estrutura do projeto
 
 ```text
 src/
-├─ app/              layout, página inicial e /projetos/[slug]
-├─ components/       cabeçalho, cartões, carrossel e ícones
-└─ data/site.ts      perfil, habilidades, projetos e formação
-public/projects/     capas dos projetos
-vercel.json          define o framework Next.js na Vercel
+├─ app/                  rotas: página inicial (page.tsx), /projetos/[slug], layout e estilos globais
+├─ components/
+│  ├─ layout/            Header e Footer, presentes em todas as páginas
+│  ├─ sections/          blocos da página inicial: Hero, ProjectsSection, About, SkillsSection, Contact
+│  ├─ projects/          card, carrossel, capa e página de detalhe dos projetos
+│  ├─ decor/             enfeites em SVG: Folder, Cursor, AppTile, Flower
+│  └─ ui/                peças reutilizáveis: Reveal, SectionTitle, estilos de botão e ícones de marca
+├─ data/                 todo o conteúdo: profile, skills, milestones, projects/ e os tipos (types.ts)
+└─ lib/                  funções auxiliares (slugify)
+public/projects/         capas dos projetos
+vercel.json              define o framework Next.js na Vercel
 ```
+
+Regra de leitura: `app/` só monta a página, `components/` desenha, `data/` guarda os textos.
 
 ## 🧭 Próximos passos
 
-- [ ] Vídeo de demonstração do Lokos de S.I e capas para Evermont e Hamburgueria
+- [ ] Vídeo de demonstração do Lokos de S.I e capa para o Evermont
 - [ ] Trocar os GIFs pesados do início e da Pokédex por vídeo curto
 
 ## 📬 Contato

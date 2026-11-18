@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/*
+  Paleta, fontes e animações do site. O Tailwind transforma cada item em classes:
+  --color-ink vira text-ink / bg-ink, --font-display vira font-display, --animate-float vira animate-float.
+  Para mudar uma cor do site inteiro, mude aqui.
+*/
 @theme inline {
   --color-bg: #f6efe4;
   --color-surface: #fffaf1;
@@ -12,6 +17,7 @@
   --font-mono: var(--f-mono), ui-monospace, monospace;
   --font-display: var(--f-display), Georgia, serif;
   --font-script: var(--f-script), cursive;
+  /* animações: marquee = carrossel de projetos, float = ícones flutuando */
   --animate-marquee: marquee 55s linear infinite;
   --animate-float: float 6s ease-in-out infinite;
 
@@ -48,6 +54,7 @@ body {
   outline-offset: 3px;
 }
 
+/* quem pediu menos movimento no sistema não vê rolagem suave nem animações */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

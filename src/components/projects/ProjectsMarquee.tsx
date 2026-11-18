@@ -1,5 +1,5 @@
-import ProjectCard from "@/components/ProjectCard";
-import { projects } from "@/data/site";
+import { projects } from "@/data/projects";
+import ProjectCard from "./ProjectCard";
 
 /** Carrossel infinito: a lista é duplicada e rola -50% em loop. Pausa no hover/foco. */
 export default function ProjectsMarquee() {

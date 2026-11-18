@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Dancing_Script, Geist_Mono, Inter_Tight, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
+// Fontes do Google carregadas pelo Next (sem pedir nada ao Google no navegador).
+// Cada uma vira uma variável CSS (--f-*) que o globals.css liga aos nomes font-sans, font-mono, etc.
 const sans = Inter_Tight({ variable: "--f-sans", subsets: ["latin"] });
 const mono = Geist_Mono({ variable: "--f-mono", subsets: ["latin"] });
 const display = Instrument_Serif({
@@ -12,6 +14,7 @@ const display = Instrument_Serif({
 });
 const script = Dancing_Script({ variable: "--f-script", subsets: ["latin"], weight: ["600", "700"] });
 
+// Título e descrição padrão do site (a página de cada projeto define os seus).
 export const metadata: Metadata = {
   title: "Murilo Rocha | Desenvolvedor Full Stack",
   description:
@@ -24,8 +27,10 @@ export const metadata: Metadata = {
   },
 };
 
+// Cor da barra do navegador no celular.
 export const viewport: Viewport = { themeColor: "#f6efe4" };
 
+/** Estrutura comum a todas as páginas: idioma, fontes e o <body>. */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
