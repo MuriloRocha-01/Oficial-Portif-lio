@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Dancing_Script, Geist_Mono, Inter_Tight, Instrument_Serif } from "next/font/google";
+import { profile } from "@/data/profile";
+import { defaultOgImage, siteDescription, siteKeywords, siteTitle, siteUrl } from "@/data/seo";
 import "./globals.css";
 
 // Fontes do Google carregadas pelo Next (sem pedir nada ao Google no navegador).
@@ -14,16 +16,34 @@ const display = Instrument_Serif({
 });
 const script = Dancing_Script({ variable: "--f-script", subsets: ["latin"], weight: ["600", "700"] });
 
-// Título e descrição padrão do site (a página de cada projeto define os seus).
+/**
+ * Metadados do site inteiro (o que Google, WhatsApp e LinkedIn leem).
+ * - title.template: as páginas de projeto só informam o nome ("Pokédex") e saem como "Pokédex | Murilo Rocha".
+ * - A imagem de compartilhamento é public/og-image.jpg (veja defaultOgImage em data/seo.ts).
+ * - metadataBase transforma endereços relativos ("/") em completos, como os cartões exigem.
+ */
 export const metadata: Metadata = {
-  title: "Murilo Rocha | Desenvolvedor Full Stack",
-  description:
-    "Portfólio de Murilo Rocha, desenvolvedor Full Stack e estudante de Sistemas de Informação. Projetos, habilidades, formação e contato.",
+  metadataBase: new URL(siteUrl),
+  title: { default: siteTitle, template: "%s | Murilo Rocha" },
+  description: siteDescription,
+  keywords: siteKeywords,
+  applicationName: "Portfólio de Murilo Rocha",
+  authors: [{ name: profile.name, url: siteUrl }],
+  creator: profile.name,
   openGraph: {
-    title: "Murilo Rocha | Desenvolvedor Full Stack",
-    description: "Projetos, habilidades, formação e contato.",
+    title: siteTitle,
+    description: siteDescription,
+    url: "/",
+    siteName: "Portfólio de Murilo Rocha",
     locale: "pt_BR",
     type: "website",
+    images: [defaultOgImage],
+  },
+  twitter: { card: "summary_large_image", title: siteTitle, description: siteDescription, images: [defaultOgImage] },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
 };
 

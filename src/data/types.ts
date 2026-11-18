@@ -3,6 +3,21 @@
 /** Uma tecnologia usada em um projeto e para que ela serviu. */
 export type Tecnologia = { nome: string; uso: string };
 
+/**
+ * Uma decisão técnica: um problema real do projeto e como foi resolvido.
+ * É o que costuma ser perguntado em entrevista, então escreva só o que está de fato no código.
+ */
+export type Decisao = {
+  /** frase curta que resume o problema, ex.: "Duas pessoas marcando o mesmo horário" */
+  titulo: string;
+  /** o que dava errado (ou poderia dar) sem a solução */
+  problema: string;
+  /** o que foi feito, com o nome da técnica ou recurso usado */
+  solucao: string;
+  /** o efeito prático da solução (opcional) */
+  resultado?: string;
+};
+
 /** Texto completo da página de um projeto (/projetos/[slug]). */
 export type Detalhes = {
   /** parágrafo de abertura da página do projeto */
@@ -13,6 +28,8 @@ export type Detalhes = {
   utilidades: string[];
   /** tecnologias e para que cada uma foi usada */
   tecnologias: Tecnologia[];
+  /** problemas reais resolvidos no projeto; a seção "Decisões técnicas" só aparece se houver */
+  decisoes?: Decisao[];
   /** só para projetos de estudo: o que foi aprendido */
   aprendizados?: string[];
 };

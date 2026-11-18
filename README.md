@@ -89,8 +89,23 @@ O texto do site fica em `src/data/`, separado do visual. Não precisa mexer nos 
 | Ícones de habilidades | `src/data/skills.ts` |
 | Formação e cursos | `src/data/milestones.ts` |
 | Um projeto existente | `src/data/projects/<nome-do-projeto>.ts` |
+| Decisões técnicas de um projeto | campo `decisoes` do arquivo do projeto (problema, o que fiz, resultado) |
+| Mover um projeto entre "projetos" e "estudos" | campo `tipo: "estudo"` no arquivo do projeto |
 
 **Para adicionar um projeto:** copie um arquivo de `src/data/projects/`, troque os dados, coloque a capa em `public/projects/` e inclua o projeto na lista de `src/data/projects/index.ts` (a ordem da lista é a ordem do carrossel). A página `/projetos/<slug>` é criada sozinha.
+
+## 🔎 Buscadores e compartilhamento (SEO)
+
+Tudo que o Google, o WhatsApp e o LinkedIn leem fica em poucos lugares:
+
+| O quê | Onde |
+| --- | --- |
+| Endereço do site, título, descrição e imagem padrão | `src/data/seo.ts` (ao trocar de domínio, mude só `siteUrl`) |
+| Metadados de todas as páginas | `src/app/layout.tsx` |
+| Metadados de cada projeto (título, canonical e capa) | `src/app/projetos/[slug]/page.tsx` |
+| Imagem do cartão de compartilhamento (1200 × 630) | `public/og-image.jpg` |
+| `robots.txt` e `sitemap.xml` (gerados sozinhos) | `src/app/robots.ts` e `src/app/sitemap.ts` |
+| Dados estruturados (quem sou eu, GitHub e LinkedIn) | `src/lib/structuredData.ts` |
 
 ## 🗂 Estrutura do projeto
 
@@ -113,7 +128,7 @@ Regra de leitura: `app/` só monta a página, `components/` desenha, `data/` gua
 
 ## 🧭 Próximos passos
 
-- [ ] Vídeo de demonstração do Lokos de S.I e capa para o Evermont
+- [ ] Vídeo de demonstração e capa para o Lokos de S.I
 - [ ] Trocar os GIFs pesados do início e da Pokédex por vídeo curto
 
 ## 📬 Contato

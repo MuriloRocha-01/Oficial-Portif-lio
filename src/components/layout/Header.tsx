@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 // "/#..." funciona na home e também nas páginas de projeto
 const links = [
   { href: "/#projetos", label: "projetos" },
+  { href: "/#estudos", label: "estudos" },
   { href: "/#sobre", label: "sobre" },
   { href: "/#habilidades", label: "habilidades" },
   { href: "/#contato", label: "contato" },

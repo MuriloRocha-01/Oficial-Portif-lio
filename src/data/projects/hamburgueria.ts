@@ -25,6 +25,30 @@ export const hamburgueria: Project = {
       "Carrinho com quantidades e total, e envio do pedido.",
       "API em camadas (rotas, serviços e repositórios) que avisa novos pedidos por sockets.",
     ],
+    decisoes: [
+      {
+        titulo: "Avisar a cozinha só depois de salvar",
+        problema:
+          "Se o aviso em tempo real saísse antes da gravação e o banco falhasse, a cozinha veria um pedido que não existe.",
+        solucao:
+          "O serviço grava o pedido pelo repositório e só então emite o evento pedido:novo pelo Socket.IO. A mudança de status segue a mesma ordem.",
+        resultado: "Tudo o que a cozinha recebe já está salvo no banco.",
+      },
+      {
+        titulo: "Cada camada com uma responsabilidade",
+        problema: "Misturar rota, regra e SQL no mesmo arquivo dificulta trocar uma peça sem quebrar as outras.",
+        solucao:
+          "A rota recebe a requisição, o serviço decide o que fazer (gravar e avisar) e o repositório só conversa com o banco. Os nomes dos eventos ficam num único objeto, SOCKET_EVENTS, para API e telas não divergirem.",
+      },
+      {
+        titulo: "O mesmo app no celular e no navegador",
+        problema:
+          "Alert.alert não existe na web: no PC, o botão \"Ver cardápio\" nunca podia ser tocado e a tela da mesa travava.",
+        solucao:
+          "No navegador o app mostra um aviso na própria tela (verde no sucesso, vermelho no erro) e entra no cardápio sozinho; no celular continua usando o alerta nativo, escolhido por Platform.OS.",
+        resultado: "Um único código atende os dois ambientes.",
+      },
+    ],
     tecnologias: [
       { nome: "Expo e React Native", uso: "App que roda no celular e na web." },
       { nome: "NativeWind", uso: "Estilo com classes Tailwind." },

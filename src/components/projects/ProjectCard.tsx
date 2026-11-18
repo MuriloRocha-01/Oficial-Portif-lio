@@ -5,10 +5,14 @@ import type { Project } from "@/data/types";
 import { toSlug } from "@/lib/slugify";
 import ProjectCover from "./ProjectCover";
 
-/** Cartão no estilo "janela" do macOS. O clique abre a página de detalhes do projeto. */
-export default function ProjectCard({ p }: { p: Project }) {
+/**
+ * Cartão no estilo "janela" do macOS. O clique abre a página de detalhes do projeto.
+ * Por padrão tem largura fixa (para o carrossel); com `fluid` ocupa a largura da coluna (para grades).
+ */
+export default function ProjectCard({ p, fluid = false }: { p: Project; fluid?: boolean }) {
+  const width = fluid ? "w-full" : "w-[290px] shrink-0 sm:w-[360px]";
   return (
-    <article className="group relative flex w-[290px] shrink-0 flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_10px_30px_-12px_rgb(58_31_28/0.25)] transition-transform hover:-translate-y-1 sm:w-[360px]">
+    <article className={`group relative flex ${width} flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_10px_30px_-12px_rgb(58_31_28/0.25)] transition-transform hover:-translate-y-1`}>
       {/* barra de título da "janela": três bolinhas, nome do app e selo "online" */}
       <div className="flex items-center gap-1.5 border-b border-border px-4 py-2.5">
         <span className="size-2.5 rounded-full bg-[#ff5f57]" />

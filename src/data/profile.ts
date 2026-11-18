@@ -3,7 +3,7 @@
 export const profile = {
   name: "Murilo Rocha",
   firstName: "Murilo",
-  role: "Desenvolvedor Full Stack",
+  role: "Desenvolvedor Full Stack & Mobile",
   tagline: "Transformo ideias em interfaces bonitas, rápidas e funcionais.",
   email: "murilorochadelima.10@gmail.com",
   github: "https://github.com/MuriloRocha-01",
@@ -12,9 +12,9 @@ export const profile = {
   location: "Peruíbe, SP",
   /** parágrafos da seção "sobre mim" */
   about: [
-    "Desde pequeno sou apaixonado por tecnologia, principalmente pelo meu amor por jogos, o que despertou minha curiosidade pelo mundo digital.",
-    "Hoje curso Sistemas de Informação na UNISANTA e gosto de transformar desafios reais em soluções inovadoras. Fiz parte da banda municipal de Peruíbe, onde aprendi a ser proativo, a me comunicar bem e a trabalhar em equipe.",
-    "Estou sempre em busca de aprendizado e de oportunidades que me façam evoluir, não só como profissional, mas como pessoa.",
+    "Sou Murilo Rocha, desenvolvedor Full Stack & Mobile e estudante de Sistemas de Informação na UNISANTA.",
+    "Construo aplicações completas, do banco de dados à tela, com TypeScript, Next.js, React Native, Node.js, Go e PostgreSQL: um sistema de gestão para clínicas, um cardápio digital por QR Code que avisa a cozinha em tempo real com WebSockets e um app de finanças pessoais para Android.",
+    "Busco minha primeira oportunidade como Desenvolvedor Júnior ou Estágio, e também aceito projetos freelance.",
   ],
   /** lista "Em que eu trabalho" */
   focusAreas: [

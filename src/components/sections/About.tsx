@@ -30,7 +30,7 @@ function Introduction() {
   return (
     <div>
       <p className="font-script text-5xl font-semibold leading-tight md:text-6xl">Oi, eu sou o {profile.firstName}!</p>
-      <div className="mt-5 space-y-4 text-lg leading-relaxed">
+      <div className="mt-6 space-y-6 text-lg leading-relaxed">
         {profile.about.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { Github } from "@/components/ui/BrandIcons";
 import { buttonPill } from "@/components/ui/buttonStyles";
-import type { Project } from "@/data/types";
+import type { Decisao, Project } from "@/data/types";
 import ProjectCover from "./ProjectCover";
 
 /** Título pequeno em caixa alta de cada bloco da página. */
@@ -45,10 +45,32 @@ function SparkList({ items }: { items: string[] }) {
   );
 }
 
+/** Um cartão de decisão técnica: o problema, o que foi feito e (se houver) o resultado. */
+function DecisionCard({ decisao }: { decisao: Decisao }) {
+  const rows = [
+    { label: "Problema", text: decisao.problema },
+    { label: "O que fiz", text: decisao.solucao },
+    ...(decisao.resultado ? [{ label: "Resultado", text: decisao.resultado }] : []),
+  ];
+  return (
+    <li className="rounded-2xl border border-border bg-surface p-6">
+      <h3 className="text-xl font-extrabold leading-tight tracking-tight">{decisao.titulo}</h3>
+      <dl className="mt-4 space-y-3 text-sm leading-relaxed">
+        {rows.map((row) => (
+          <div key={row.label} className="grid gap-1 sm:grid-cols-[6rem_1fr] sm:gap-4">
+            <dt className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-accent">{row.label}</dt>
+            <dd className="text-muted">{row.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </li>
+  );
+}
+
 /**
  * Conteúdo da página de um projeto (/projetos/[slug]), de cima para baixo:
- * voltar, capa, selos, título e resumo, links, dores e utilidades, tecnologias e
- * (só em projetos de estudo) o que foi aprendido. Os textos vêm de data/projects.
+ * voltar, capa, selos, título e resumo, links, dores e utilidades, tecnologias,
+ * decisões técnicas (se o projeto tiver) e, só em projetos de estudo, o que foi aprendido. Os textos vêm de data/projects.
  */
 export default function ProjectDetail({ project: p }: { project: Project }) {
   const { detalhes: d } = p;
@@ -107,6 +129,18 @@ export default function ProjectDetail({ project: p }: { project: Project }) {
           ))}
         </ul>
       </section>
+
+      {d.decisoes && d.decisoes.length > 0 && (
+        <section className="mt-14">
+          <h2 className={blockLabel}>Decisões técnicas</h2>
+          <p className="mb-6 max-w-2xl text-muted">Problemas reais que apareceram no projeto e como eu resolvi cada um.</p>
+          <ul className="space-y-5">
+            {d.decisoes.map((decisao) => (
+              <DecisionCard key={decisao.titulo} decisao={decisao} />
+            ))}
+          </ul>
+        </section>
+      )}
 
       {p.tipo === "estudo" && d.aprendizados && d.aprendizados.length > 0 && (
         <section className="mt-14 rounded-[2rem] border-2 border-ink bg-surface p-8 md:p-10">
